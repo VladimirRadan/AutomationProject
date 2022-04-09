@@ -8,7 +8,6 @@ import pages.Login;
 public class LoginTest extends BaseTest {
 
 
-
     Login login;
 
     @BeforeMethod
@@ -16,10 +15,10 @@ public class LoginTest extends BaseTest {
          login = new Login(driver);
     }
 
-    @Test
-    public void loginUserTest(){
-        login.loginUser("tomsmith", "SuperSecretPassword!");
-        Assert.assertTrue(login.isUserLoggedIn());
-    }
+//    @Test
+//    public void loginUserTest(){
+//        login.loginUser("tomsmith", "SuperSecretPassword!");
+//        Assert.assertTrue(login.isUserLoggedIn());
+//    }
 
 }

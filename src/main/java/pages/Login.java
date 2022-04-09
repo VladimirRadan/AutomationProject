@@ -5,36 +5,32 @@ import org.openqa.selenium.WebDriver;
 
 public class Login extends BasePage{
 
-    By passwordField = By.name("password");
-    By usernameField = By.cssSelector("input[name='username']");
-    By loginButton = By.className("radius");
-    By expectedLoggedInElement = By.id("flash");
+    private By myAccountNavBar = By.cssSelector("a[title='My Account']");
+    private By navbarLoginOption = By.xpath("//a[text()='Login']");
+    private By loginEmailField= By.cssSelector("#input-email");
+    private By loginPasswordField= By.cssSelector("#input-password");
+    private By loginButton = By.cssSelector("input[type='submit']");
+    private By labelMyAccount = By.xpath("//h2[text()='My Account']");
 
-
+    public String expectedLabelText = "My Account";
 
     public Login(WebDriver driver) {
         super(driver);
     }
 
-    //HomePage
-    public void loginUser(String username, String password){
-        typeIn(usernameField, username);
-        typeIn(passwordField, password);
-        clickOnElement(loginButton);
+    public void goToLoginPage(){
+        clickOnElement(myAccountNavBar);
+        clickOnElement(navbarLoginOption);
     }
+//
+//    public boolean loginUser(String username, String password){
+//        goToLoginPage();
+//        typeIn(loginEmailField, username);
+//        typeIn(loginPasswordField, password);
+//        clickOnElement(loginButton);
+//        return readElementsContent(labelMyAccount).equals(expectedLabelText);
+//    }
 
 
-    public boolean isUserLoggedIn(){
-        String actual[] = getElement(expectedLoggedInElement).getText().split("(?<=!)"); //regex
-        String actualtext = actual[0];
-        String actualBackgroundColor = getElement(expectedLoggedInElement).getCssValue("background-color");
-        String expectedText = "You logged into a secure area!";
-        String expectedColor = "rgba(93, 164, 35, 1)";
-        if (expectedText.equals(actualtext)
-                && actualBackgroundColor.equals(expectedColor)){
-             return true;
-        }
-        return false;
-    }
 
 }
