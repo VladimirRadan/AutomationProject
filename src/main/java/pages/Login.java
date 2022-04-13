@@ -12,6 +12,7 @@ public class Login extends BasePage{
     private By loginButton = By.cssSelector("input[type='submit']");
     private By labelMyAccount = By.xpath("//h2[text()='My Account']");
 
+
     public String expectedLabelText = "My Account";
 
     public Login(WebDriver driver) {
@@ -22,7 +23,7 @@ public class Login extends BasePage{
         clickOnElement(myAccountNavBar);
         clickOnElement(navbarLoginOption);
     }
-//
+
 //    public boolean loginUser(String username, String password){
 //        goToLoginPage();
 //        typeIn(loginEmailField, username);

@@ -46,7 +46,7 @@ public class Register extends BasePage{
     }
 
     public boolean isUserRegistered(){
-        String expectedSuccessText = "Your Account Has Been Created!!";
+        String expectedSuccessText = "Your Account Has Been Created!";
         return matchesExpectedText(successMessage, expectedSuccessText);
     }
 

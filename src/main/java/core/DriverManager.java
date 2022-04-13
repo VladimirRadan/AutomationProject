@@ -9,9 +9,17 @@ import java.time.Duration;
 
 public class DriverManager {
 
-    private static WebDriver driver;
+    private DriverManager(){}
 
-    public static WebDriver setDriver(String browser){
+    private static final DriverManager instance = new DriverManager();
+
+    public static DriverManager getInstance(){
+        return instance;
+    }
+
+    private WebDriver driver;
+
+    public WebDriver setDriver(String browser){
         if (browser.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();

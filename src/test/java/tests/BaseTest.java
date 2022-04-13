@@ -8,21 +8,25 @@ import org.testng.asserts.SoftAssert;
 
 public class BaseTest {
 
-    static WebDriver driver;
+    WebDriver driver;
     protected SoftAssert softAssert;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws InterruptedException {
-        driver = DriverManager.setDriver("chrome");
+        driver = DriverManager.getInstance().setDriver("chrome");
+        Thread.sleep(3000);
         softAssert = new SoftAssert();
         //driver.get("https://the-internet.herokuapp.com/login");
-        Thread.sleep(2000);
         driver.get("https://demo.opencart.com/");
     }
 
     @AfterMethod
     public void tearDown(){
         driver.quit();
+    }
+
+    public WebDriver getDriver(){
+        return driver;
     }
 
 

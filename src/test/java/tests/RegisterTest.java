@@ -1,9 +1,12 @@
 package tests;
 
+import listeners.TestListener;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.Register;
 
+@Listeners(TestListener.class)
 public class RegisterTest extends BaseTest{
 
     Register register;
