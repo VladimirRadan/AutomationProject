@@ -8,12 +8,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
+
+import static utils.Utils.dotEnv;
+
 
 public class BasePage {
 
@@ -21,11 +21,12 @@ public class BasePage {
     protected WebDriverWait wait;
     protected Faker faker;
     private static final Logger logger = LogManager.getLogger(BasePage.class.getName());
+    private long waitTime = Long.parseLong(dotEnv().get("EXPLICIT_WAIT"));
 
     public BasePage(WebDriver driver){
         faker = new Faker();
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
         PageFactory.initElements(driver, this);
     }
 

@@ -1,14 +1,22 @@
 package tests;
 
+import io.qameta.allure.*;
+import listeners.RetryAnalyzer;
+import listeners.TestListener;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.Basket;
 import pages.Login;
 
-
+@Listeners(TestListener.class)
 public class BasketTest extends BaseTest{
+
+    /**
+     * TC #01:{@link #basketCalculationTest}
+     * TC #02:{}
+     */
 
     Basket basket;
     Login login;
@@ -21,7 +29,11 @@ public class BasketTest extends BaseTest{
     }
 
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Basket calculation test: Expected result - amount in basket equals expected sum of amounts")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("Epic: Basket")
+    @Story("Story: Basket Page Test")
     public void basketCalculationTest(){
         basket.addProductToBasket()
                 .goToBasket();

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,6 +23,7 @@ public class Basket extends BasePage{
     }
 
 
+    @Step("Add product to basket")
     public Basket addProductToBasket(){
         clickOnElement(desktopMenu);
         clickOnElement(showDesktops);
@@ -29,11 +31,13 @@ public class Basket extends BasePage{
         return this;
     }
 
+    @Step("Go to basket by clicking button in header")
     public Basket goToBasket(){
         clickOnElement(shoppingCartIcon);
         return this;
     }
 
+    @Step("Calculate basket amount")
     public double basketCalculation(){
         double subtotal = getAmountByRegex(getTextFromElement(subTotalAmount));
         double ecoTax = getAmountByRegex(getTextFromElement(ecoTaxAmount));
@@ -41,6 +45,7 @@ public class Basket extends BasePage{
         return subtotal + ecoTax - vat;
     }
 
+    @Step("Get total amount from webelement")
     public double basketTotalAmount(){
         return getAmountByRegex(getTextFromElement(totalAmount));
     }

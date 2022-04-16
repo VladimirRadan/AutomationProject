@@ -1,5 +1,6 @@
 package listeners;
 
+import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,10 +11,12 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import tests.BaseTest;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class TestListener extends BaseTest implements ITestListener {
 
@@ -35,6 +38,7 @@ public class TestListener extends BaseTest implements ITestListener {
         Object testClass = result.getInstance();
         WebDriver driver = ((BaseTest)testClass).getDriver();
         takeScreenshot(driver);
+        Allure.addAttachment(UUID.randomUUID().toString(), new ByteArrayInputStream(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES)));
     }
 
     @Override

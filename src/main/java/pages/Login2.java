@@ -3,6 +3,9 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Utils;
+
+import static utils.Utils.waitForSeconds;
 
 public class Login2 extends BasePage{
 
@@ -23,11 +26,11 @@ public class Login2 extends BasePage{
     }
 
 
-    public void loginUser(String username, String password) throws InterruptedException {
+    public void loginUser(String username, String password){
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
-        Thread.sleep(5000);
+        waitForSeconds(4);
     }
 
 
