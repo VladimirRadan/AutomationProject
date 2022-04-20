@@ -2,6 +2,8 @@ package tests;
 
 import io.qameta.allure.Description;
 import listeners.TestListener;
+import model.LoginUserModel;
+import model.RegisterUser;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -10,6 +12,9 @@ import pages.Login;
 import pages.Login2;
 import utils.Utils;
 
+import java.util.List;
+
+import static utils.Utils.getDataFromJson;
 import static utils.Utils.waitForSeconds;
 
 @Listeners(TestListener.class)
@@ -44,6 +49,27 @@ public class LoginTest extends BaseTest {
     public void loginUserTest(String username, String password){
         login.loginUserHeroku(username, password);
         Assert.assertTrue(login.isErrorMessagePresent());
+    }
+
+    @Test()
+    public void loginUserFromJson(){
+        List<LoginUserModel> list = getDataFromJson();
+        System.out.println(list.get(0).getUsername());
+        System.out.println(list.get(0).getPassword());
+//        login.loginUserHeroku(username, password);
+//        Assert.assertTrue(login.isErrorMessagePresent());
+    }
+
+    @Test(dataProvider = "getData", dataProviderClass = Utils.class)
+    public void loginUserTestFromJson(LoginUserModel loginUserModel){
+        login.loginUserHeroku(loginUserModel.getUsername(), loginUserModel.getPassword());
+        Assert.assertTrue(login.isErrorMessagePresent());
+    }
+
+    @Test()
+    public void writeUserToJson(){
+        RegisterUser user = new RegisterUser();
+        Utils.writeToJson(user);
     }
 
 

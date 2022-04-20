@@ -16,14 +16,14 @@ public class RegisterTest extends BaseTest{
         register = new Register(driver);
     }
 
-    @Test()
-    public void registerUserTest(){
-        register.goToRegisterPage()
-                .registerUser();
-        softAssert.assertTrue(register.isUserRegistered());
-        softAssert.assertTrue(register.isLogoutButtonPresent());
-        softAssert.assertAll();
-    }
+//    @Test()
+//    public void registerUserTest(){
+//        register.goToRegisterPage()
+//                .registerUser();
+//        softAssert.assertTrue(register.isUserRegistered());
+//        softAssert.assertTrue(register.isLogoutButtonPresent());
+//        softAssert.assertAll();
+//    }
 
 
 

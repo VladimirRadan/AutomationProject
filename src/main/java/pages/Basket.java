@@ -3,6 +3,8 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class Basket extends BasePage{
 
@@ -25,11 +27,23 @@ public class Basket extends BasePage{
 
     @Step("Add product to basket")
     public Basket addProductToBasket(){
-        clickOnElement(desktopMenu);
+        //clickOnElement(desktopMenu);
+        moveToElementAndClick(desktopMenu);
         clickOnElement(showDesktops);
         clickOnElement(productCartIcon);
         return this;
     }
+
+    protected void moveToElementAndClick(By locator){
+        Actions actions = new Actions(driver);
+        WebElement element = getElement(locator);
+        actions.moveToElement(element)
+                .click()
+                .build()
+                .perform();
+    }
+
+
 
     @Step("Go to basket by clicking button in header")
     public Basket goToBasket(){

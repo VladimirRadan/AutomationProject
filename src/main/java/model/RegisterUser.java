@@ -1,7 +1,15 @@
 package model;
 
 import com.github.javafaker.Faker;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class RegisterUser {
@@ -48,9 +56,17 @@ public class RegisterUser {
         return confirmPassword;
     }
 
-    public Faker getFaker() {
-        return faker;
+
+
+    public static List<RegisterUser> getDataFromJson(){
+        Reader reader = null;
+        try {
+            reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/src/test/resources/user.json"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        ArrayList<RegisterUser> list = new Gson().fromJson(reader, new TypeToken<List<RegisterUser>>(){
+        }.getType());
+        return list;
     }
-
-
 }

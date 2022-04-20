@@ -29,16 +29,16 @@ public class BasketTest extends BaseTest{
     }
 
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
-    @Description("Basket calculation test: Expected result - amount in basket equals expected sum of amounts")
-    @Severity(SeverityLevel.CRITICAL)
-    @Epic("Epic: Basket")
-    @Story("Story: Basket Page Test")
-    public void basketCalculationTest(){
-        basket.addProductToBasket()
-                .goToBasket();
-        Assert.assertEquals(basket.basketCalculation(), basket.basketTotalAmount());
-    }
+//    @Test(retryAnalyzer = RetryAnalyzer.class)
+//    @Description("Basket calculation test: Expected result - amount in basket equals expected sum of amounts")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Epic("Epic: Basket")
+//    @Story("Story: Basket Page Test")
+//    public void basketCalculationTest(){
+//        basket.addProductToBasket()
+//                .goToBasket();
+//        Assert.assertEquals(basket.basketCalculation(), basket.basketTotalAmount());
+//    }
 
 
 
